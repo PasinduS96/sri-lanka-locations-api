@@ -1,5 +1,26 @@
 const mongoose = require('mongoose');
 
+
+const CreatedBySchema = mongoose.Schema({
+    id: {
+        type: Number,
+        required: true
+    },
+    name: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    created_at: {
+        type: Date,
+        required: true,
+        default: Date.now
+    }
+})
+
 const CitySchema = mongoose.Schema({
     id: {
         type: Number,
@@ -32,7 +53,13 @@ const CitySchema = mongoose.Schema({
     longitude: {
         type: Number,
         required: false
-    }
+    },
+    is_custom_city: {
+        type: Boolean,
+        required: false,
+        default: false
+    },
+    created_by: CreatedBySchema
 })
 
 mongoose.model('city', CitySchema);
