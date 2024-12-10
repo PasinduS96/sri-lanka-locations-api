@@ -8,6 +8,11 @@ const morgan = require("morgan");
 // Create express instance
 const app = express();
 
+// Import Routes
+const provinceRoutes = require("./src/routes/provinceRoutes");
+const districtRoutes = require("./src/routes/distictsRoutes");
+const cityRoutes = require("./src/routes/cityRoutes");
+
 // Main Middlewares
 app.use(morgan("dev"));
 
@@ -39,3 +44,8 @@ app.listen(process.env.PORT, () => {
     console.log("MongoDB Connected Successfully!!");
   });
 });
+
+// Routes
+app.use("/api/provinces", provinceRoutes);
+app.use("/api/districts", districtRoutes);
+app.use("/api/cities", cityRoutes);

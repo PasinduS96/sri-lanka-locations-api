@@ -5,14 +5,7 @@ const Provinces = mongoose.model("provinces");
 
 const getProviceByName = async (req, res) => {
   try {
-    const province = "";
-    if (req.body.language === "english") {
-      province = await Provinces.findOne({ name_en: req.params.name });
-    } else if (req.body.language === "sinhala") {
-      province = await Provinces.findOne({ name_si: req.params.name });
-    } else if (req.body.language === "tamil") {
-      province = await Provinces.findOne({ name_ta: req.params.name });
-    }
+    const province = await Provinces.findOne({ name_en: req.params.name });
     if (!province) {
       return res
         .status(404)

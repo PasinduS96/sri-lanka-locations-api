@@ -5,14 +5,7 @@ const Districts = mongoose.model('districts');
 
 const getDistrictByName = async (req, res) => { 
     try {
-        const district = "";
-        if (req.body.language === "english") {
-            district = await Districts.findOne({ name_en: req.params.name });
-        } else if (req.body.language === "sinhala") {
-            district = await Districts.findOne({ name_si: req.params.name });
-        } else if (req.body.language === "tamil") {
-            district = await Districts.findOne({ name_ta: req.params.name });
-        }
+        const district = await Districts.findOne({ name_en: req.params.name });
         if (!district) {
             return res
                .status(404)

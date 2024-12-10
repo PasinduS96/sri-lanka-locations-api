@@ -5,14 +5,7 @@ const City = mongoose.model('city');
 
 const getCityByName = async (req, res) => { 
     try {
-        const city = "";
-        if (req.body.language === "english") {
-            city = await City.findOne({ name_en: req.params.name });
-        } else if (req.body.language === "sinhala") {
-            city = await City.findOne({ name_si: req.params.name });
-        } else if (req.body.language === "tamil") {
-            city = await City.findOne({ name_ta: req.params.name });
-        }
+        const city = await City.findOne({ name_en: req.params.name });
         if (!city) {
             return res
                .status(404)
@@ -26,13 +19,13 @@ const getCityByName = async (req, res) => {
 
 const getCityById = async (req, res) => { 
     try {
-        const city = await City.findById(req.params.id);
-        if (!city) {
+        const results = await City.findById(req.params.id);
+        if (!results) {
             return res
                .status(404)
                .json({ error: "City not found! Invalid city id." });
         }
-        res.json(city);
+        res.json(results);
     } catch (err) {
         res.status(500).json({ error: err });
     }
@@ -93,5 +86,5 @@ module.exports = {
     getCityById,
     addNewCity,
     updateCity,
-    deleteCity,
+    deleteCity
 }
